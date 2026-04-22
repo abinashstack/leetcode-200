@@ -172,7 +172,12 @@
     } else {
       showLoggedOut();
     }
-    await loadState();
+    try {
+      await loadState();
+    } catch (e) {
+      console.warn("loadState error, falling back to local:", e);
+      done = loadFromLocal();
+    }
     render();
   });
 
