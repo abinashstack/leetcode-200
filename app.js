@@ -47,6 +47,8 @@
   const userName = document.getElementById("user-name");
   const syncBanner = document.getElementById("sync-banner");
   const syncText = document.getElementById("sync-text");
+  const loginGate = document.getElementById("login-gate");
+  const mainContent = document.getElementById("main-content");
 
   // --- Storage layer ---
   function loadFromLocal() {
@@ -135,11 +137,15 @@
     userName.textContent = user.displayName || user.email;
     syncBanner.style.display = "block";
     syncText.textContent = "Progress synced to your Google account.";
+    loginGate.style.display = "none";
+    mainContent.style.display = "block";
   }
 
   function showLoggedOut() {
     btnLogin.style.display = "flex";
     userInfo.style.display = "none";
+    loginGate.style.display = "block";
+    mainContent.style.display = "none";
     syncBanner.style.display = "none";
   }
 

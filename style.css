@@ -119,6 +119,32 @@ body {
   color: #ff375f;
 }
 
+/* Login gate */
+.login-gate {
+  text-align: center;
+  padding: 4em 1.5em;
+  color: #555;
+}
+
+.gate-content h2 {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5em;
+}
+
+.gate-content p {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  color: #666;
+}
+
+.gate-hint {
+  margin-top: 1.5em;
+  font-size: 0.9em;
+  color: #999;
+}
+
 /* Sync banner */
 .sync-banner {
   padding: 0.5em 1em;
