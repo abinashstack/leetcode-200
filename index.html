@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode 200 — Practice Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-row">
+          <div>
+            <h1>LeetCode 200</h1>
+            <p class="subtitle">
+              Top 200 questions across all DSA patterns. Track your progress.
+            </p>
+          </div>
+          <div class="auth-area" id="auth-area">
+            <button class="btn-login" id="btn-login">
+              <svg width="18" height="18" viewBox="0 0 48 48">
+                <path
+                  fill="#EA4335"
+                  d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                />
+                <path
+                  fill="#4285F4"
+                  d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+                />
+                <path
+                  fill="#34A853"
+                  d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                />
+              </svg>
+              Sign in with Google
+            </button>
+            <div class="user-info" id="user-info" style="display: none">
+              <img class="user-avatar" id="user-avatar" alt="" />
+              <span class="user-name" id="user-name"></span>
+              <button class="btn-logout" id="btn-logout">Sign out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sync banner -->
+      <div class="sync-banner" id="sync-banner" style="display: none">
+        <span id="sync-text">Progress synced to your Google account.</span>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-section">
+        <div class="progress-stats">
+          <span class="progress-text"
+            ><strong id="done-count">0</strong> / 200 done</span
+          >
+          <span class="progress-pct" id="done-pct">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="difficulty-stats">
+          <span class="diff-stat easy-stat"
+            ><span class="dot dot-easy"></span> Easy:
+            <strong id="easy-done">0</strong>/<span id="easy-total"
+              >0</span
+            ></span
+          >
+          <span class="diff-stat medium-stat"
+            ><span class="dot dot-medium"></span> Medium:
+            <strong id="med-done">0</strong>/<span id="med-total">0</span></span
+          >
+          <span class="diff-stat hard-stat"
+            ><span class="dot dot-hard"></span> Hard:
+            <strong id="hard-done">0</strong>/<span id="hard-total"
+              >0</span
+            ></span
+          >
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <input
+          type="text"
+          id="search"
+          class="search-box"
+          placeholder="Search questions..."
+        />
+
+        <div class="filter-row">
+          <div class="filter-group">
+            <span class="filter-label">Difficulty</span>
+            <div class="pills" id="diff-pills">
+              <button class="pill active" data-diff="all">All</button>
+              <button class="pill pill-easy" data-diff="Easy">Easy</button>
+              <button class="pill pill-medium" data-diff="Medium">
+                Medium
+              </button>
+              <button class="pill pill-hard" data-diff="Hard">Hard</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Status</span>
+            <div class="pills" id="status-pills">
+              <button class="pill active" data-status="all">All</button>
+              <button class="pill" data-status="todo">Remaining</button>
+              <button class="pill" data-status="done">Completed</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Pattern</span>
+          <div class="pills pattern-pills" id="pattern-pills">
+            <button class="pill active" data-pattern="all">All</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <table id="q-table">
+          <thead>
+            <tr>
+              <th class="col-check"></th>
+              <th class="col-id">#</th>
+              <th class="col-title">Title</th>
+              <th class="col-diff">Difficulty</th>
+              <th class="col-pattern">Pattern</th>
+              <th class="col-links">Links</th>
+            </tr>
+          </thead>
+          <tbody id="q-body"></tbody>
+        </table>
+        <div class="no-results" id="no-results" style="display: none">
+          No questions match your filters.
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="btn-reset" id="btn-reset">Reset All Progress</button>
+        <span class="showing-count" id="showing-count"></span>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>
+          Curated for interview prep. Sign in to sync progress across devices.
+        </p>
+      </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
