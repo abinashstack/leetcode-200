@@ -150,11 +150,16 @@
   }
 
   // --- Auth events ---
-  btnLogin.addEventListener("click", function () {
+  function doLogin() {
     auth.signInWithPopup(provider).catch(function (err) {
       console.error("Login failed:", err);
     });
-  });
+  }
+
+  btnLogin.addEventListener("click", doLogin);
+
+  var btnLoginHero = document.getElementById("btn-login-hero");
+  if (btnLoginHero) btnLoginHero.addEventListener("click", doLogin);
 
   btnLogout.addEventListener("click", function () {
     auth.signOut();
